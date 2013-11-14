@@ -69,7 +69,6 @@ public class PreyRunnerService extends Service {
 		NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.cancelAll();
 		ActionsController.getInstance(PreyRunnerService.this).finishRunningJosb();
-		stopService(new Intent(PreyRunnerService.this, LocationService.class));
 		running = false;
 		PreyLogger.d("PreyRunnerService has been destroyed");
 	}
