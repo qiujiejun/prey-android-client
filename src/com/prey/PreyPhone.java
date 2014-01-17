@@ -64,7 +64,8 @@ public class PreyPhone {
 	public String getSerialNumber(){
 		PreyConfig config=PreyConfig.getPreyConfig(ctx);
 		if (config.isFroyoOrAbove()){
-			return Build.BOOTLOADER;
+			TelephonyManager tManager = (TelephonyManager)ctx.getSystemService(Context.TELEPHONY_SERVICE);
+			return tManager.getDeviceId();
 		} else {
 			return "";
 		}
