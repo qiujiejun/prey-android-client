@@ -33,7 +33,7 @@ public class ResponseParser {
 		sb.append("<missing>true</missing>");
 		sb.append("</status>");
 		sb.append("<configuration>");
-		sb.append("<current_release>0.5.9</current_release>");
+		sb.append("<current_release>0.5.10</current_release>");
 		sb.append("<delay>2</delay>");
 		sb.append("<post_url>http://control.preyproject.com/devices/zmewgu/reports.xml</post_url>");
 		sb.append("</configuration>");
