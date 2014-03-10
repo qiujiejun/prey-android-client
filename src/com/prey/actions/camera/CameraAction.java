@@ -21,6 +21,7 @@ import com.prey.actions.HttpDataService;
 import com.prey.actions.PreyAction;
 import com.prey.actions.observer.ActionJob;
 import com.prey.actions.observer.ActionResult;
+import com.prey.actions.picture.PictureUtil;
 import com.prey.activities.SimpleCameraActivity;
 import com.prey.exceptions.PreyException;
 import com.prey.net.http.EntityFile;
@@ -45,7 +46,8 @@ public class CameraAction extends PreyAction {
 	public void execute(ActionJob actionJob2, Context ctx) throws PreyException {
 		try {
 			actionJob = actionJob2;
-			AudioManager mgr = null;
+			HttpDataService data=PictureUtil.getPicture(ctx);
+			/*AudioManager mgr = null;
 			int streamType = AudioManager.STREAM_SYSTEM;
 
 			Intent intent = new Intent(ctx, SimpleCameraActivity.class);
@@ -68,10 +70,12 @@ public class CameraAction extends PreyAction {
 				i++;
 			}
 
-			SimpleCameraActivity.activity.takePicture();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
+			if(SimpleCameraActivity.activity!=null){
+				SimpleCameraActivity.activity.takePicture();
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+				}
 			}
 
 			mgr.setStreamSolo(streamType, false);
@@ -103,9 +107,9 @@ public class CameraAction extends PreyAction {
 				data = new HttpDataService(CameraAction.DATA_ID);
 				data.setList(true);
 				data.addEntityFile(entityFile);
-			} else {
+			} else {data
 				PreyLogger.d("dataImagen null");
-			}
+			}*/
 
 			ActionResult result = new ActionResult();
 			result.setDataToSend(data);

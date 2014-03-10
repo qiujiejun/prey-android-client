@@ -166,8 +166,15 @@ public class PreyRestHttpClient {
 			entity.addPart(key, value);
 		}
 		try{
-			for (EntityFile entityFile : entityFiles) {
-				entity.addPart(entityFile.getType(), entityFile.getName(), entityFile.getFile(), entityFile.getMimeType(), true);
+			
+			for (int i=0;i< entityFiles.size();i++) {
+				EntityFile entityFile =entityFiles.get(i);
+				boolean isLast=((i+1)==entityFiles.size()?true:false);
+				PreyLogger.d("["+i+"]type:"+entityFile.getType()+" name:"+entityFile.getName()+ "  File:" + entityFile.getFile() + " MimeType:" + entityFile.getMimeType()+" isLast:"+isLast);
+				
+				entity.addPart(entityFile.getType(), entityFile.getName(), entityFile.getFile(), entityFile.getMimeType(), isLast);
+			 
+					 
 			}
 		}catch(Exception e){
 			
@@ -194,10 +201,12 @@ public class PreyRestHttpClient {
 			String value = entry.getValue();
 			entity.addPart(key, value);
 		}
-
+		int i=1;
 		for (EntityFile entityFile : entityFiles) {
-			entity.addPart(entityFile.getType(), entityFile.getName(), entityFile.getFile(), entityFile.getMimeType(), true);
-			PreyLogger.i("Type:" + entityFile.getType() + " Name:" + entityFile.getName() + " File:" + entityFile.getFile() + " MimeType:" + entityFile.getMimeType());
+			boolean isLast=(i==entityFiles.size()?true:false);
+			entity.addPart(entityFile.getType(), entityFile.getName(), entityFile.getFile(), entityFile.getMimeType(), isLast);
+			PreyLogger.i("Type:" + entityFile.getType() + " Name:" + entityFile.getName() + " File:" + entityFile.getFile() + " MimeType:" + entityFile.getMimeType()+" isLast:"+isLast);
+			i++;
 		}
 
 		method.setEntity(entity);

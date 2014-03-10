@@ -2,6 +2,7 @@ package com.prey.activities;
 
  
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
  
 
@@ -27,10 +28,16 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 	public static SurfaceHolder mHolder;
 	public static byte[] dataImagen = null;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.simple_camera);
+		
+		Bundle extras=getIntent().getExtras();
+		 String focus=extras.getString("focus");
+		 PreyLogger.i("focus:"+focus);
+		 
 		
 		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
 		mHolder = surfaceView.getHolder();
@@ -42,11 +49,17 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 				camera = Camera.open();
 				PreyLogger.i("open camera()");
 			} else {
-				camera = Camera.open(1);
-				PreyLogger.i("open camera(1)");
+				if ("front".equals(focus)){
+					camera = Camera.open(0);
+					PreyLogger.i("open camera(0)");
+				} else {
+					camera = Camera.open(1);
+					PreyLogger.i("open camera(1)");
+				}
 			}
 
 		} catch (Exception e) {
+			PreyLogger.e(" camera error:"+e.getMessage(),e);
 		}
 		if (camera==null){
 			try {
@@ -57,6 +70,7 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 		activity = this;
 	}
 
+	@SuppressLint("NewApi")
 	public void takePicture() {
 		try {
 			if (camera != null) {
