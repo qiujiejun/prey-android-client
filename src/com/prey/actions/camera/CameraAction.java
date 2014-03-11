@@ -6,14 +6,10 @@
  ******************************************************************************/
 package com.prey.actions.camera;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
 
 import com.prey.PreyLogger;
@@ -24,7 +20,6 @@ import com.prey.actions.observer.ActionResult;
 import com.prey.actions.picture.PictureUtil;
 import com.prey.activities.SimpleCameraActivity;
 import com.prey.exceptions.PreyException;
-import com.prey.net.http.EntityFile;
 
 public class CameraAction extends PreyAction {
 

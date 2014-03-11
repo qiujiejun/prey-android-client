@@ -87,7 +87,7 @@ public class LocationNotifierAction extends PreyAction {
 					throw new PreyException("Thread was intrrupted. Finishing Location NotifierAction", e);
 				}
 		}
-
+		ctx.stopService(new Intent(ctx, LocationService.class));
 		data.getDataList().putAll(parameters);
 		parameters = null;
 
