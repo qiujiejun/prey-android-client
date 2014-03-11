@@ -9,11 +9,13 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 
+import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
  
 import android.os.Bundle;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -27,7 +29,7 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 
 	public static SurfaceHolder mHolder;
 	public static byte[] dataImagen = null;
-
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +37,8 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 		setContentView(R.layout.simple_camera);
 		
 		Bundle extras=getIntent().getExtras();
-		 String focus=extras.getString("focus");
-		 PreyLogger.i("focus:"+focus);
-		 
+		String focus=extras.getString("focus");
+		PreyLogger.i("focus:"+focus);
 		
 		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
 		mHolder = surfaceView.getHolder();
@@ -71,28 +72,65 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 	}
 
 	@SuppressLint("NewApi")
-	public void takePicture() {
+	public void takePicture(String focus) {
 		try {
 			if (camera != null) {
 				Camera.Parameters parameters = camera.getParameters();
-			 	if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-					parameters.set("orientation", "portrait");
-					parameters.set("rotation", 90);
+			 	
+				if("front".equals(focus)){
+					if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+						parameters.set("orientation", "portrait");
+						parameters.set("rotation", 90);
+					}
+					if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+						parameters.set("orientation", "landscape");
+						parameters.set("rotation", 180);
+					}  
+				}else{
+					if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+						parameters.set("orientation", "portrait");
+						parameters.set("rotation", 270);
+					}
+					if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+						parameters.set("orientation", "landscape");
+						parameters.set("rotation",  0);
+					} 
 				}
-				if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-					parameters.set("orientation", "landscape");
-					parameters.set("rotation", 180);
-				} 
 				parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
-				camera.setParameters(parameters);
 				
+				parameters.setWhiteBalance(Parameters.WHITE_BALANCE_AUTO);
+			   // parameters.setSceneMode(Parameters.SCENE_MODE_AUTO);
+			    //parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
+				parameters.set("iso", 400); 
+			    parameters.setExposureCompensation(parameters.getMaxExposureCompensation());
+/*
+			    int rotation = getWindowManager().getDefaultDisplay().getRotation();
+			    int degrees = 0;
+			    switch (rotation) {
+			         case Surface.ROTATION_0: degrees = 0; break;
+			         case Surface.ROTATION_90: degrees = 90; break;
+			         case Surface.ROTATION_180: degrees = 180; break;
+			         case Surface.ROTATION_270: degrees = 270; break;
+			     }
+			    Camera.CameraInfo info = new Camera.CameraInfo();
+			     int result;
+			     if ("front".equals(focus)) {
+			         result = (info.orientation + degrees) % 360;
+			         result = (360 - result) % 360;  // compensate the mirror
+			     } else {  // back-facing
+			         result = (info.orientation - degrees + 360) % 360;
+			     }
+			     camera.setDisplayOrientation(result);
+			     parameters.setRotation(result);
+			     */
+				camera.setParameters(parameters);
 			}
 		} catch (Exception e) {
 		}	
-		
 		try {	
 			if(camera!=null){
 				camera.startPreview();
+			//	camera.autoFocus(  autoFocusCallback); 
 				camera.takePicture(shutterCallback, rawCallback, jpegCallback);
 				PreyLogger.i("open takePicture()");
 			}
@@ -109,6 +147,14 @@ public class SimpleCameraActivity extends Activity implements SurfaceHolder.Call
 		}
 	}
 
+	
+	AutoFocusCallback autoFocusCallback=new AutoFocusCallback() {
+		@Override
+		public void onAutoFocus(boolean success, Camera camera) {
+		}
+    };
+				
+				
 	ShutterCallback shutterCallback = new ShutterCallback() {
 		public void onShutter() {
 		}
