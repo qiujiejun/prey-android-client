@@ -8,19 +8,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_bg"
-    android:paddingLeft="60dp"
-    android:paddingRight="60dp" >
+    android:background="@color/screen_bg_white" >
 
+    
+    <LinearLayout
+         android:id="@+id/add_device_logo"
+         android:layout_width="500dp"
+         android:layout_height="wrap_content"
+         android:background="@color/screen_bg"
+         android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo_prey_2x" />
+
+ </LinearLayout>
+ 
     <TextView
         android:id="@+id/add_device_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+ 		android:layout_below="@+id/add_device_logo"
         android:layout_margin="10dp"
         android:text="@string/log_in_to_prey_h1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/darker_txt"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <EditText

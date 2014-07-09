@@ -13,9 +13,9 @@
                 android:startColor="@color/fb_border_start" 
                 android:centerColor="@color/fb_border_center"
                 android:endColor="@color/fb_border_end" />
-            <corners android:bottomRightRadius="3dp"
-                android:bottomLeftRadius="3dp" android:topLeftRadius="3dp"
-                android:topRightRadius="3dp" />
+            <corners android:bottomRightRadius="40dp"
+                android:bottomLeftRadius="40dp" android:topLeftRadius="40dp"
+                android:topRightRadius="40dp" />
         </shape>
     </item>
     
@@ -26,9 +26,9 @@
                 android:startColor="@color/fb_normal_start" 
                 android:centerColor="@color/fb_normal_center"
                 android:endColor="@color/fb_normal_end" />
-            <corners android:bottomRightRadius="2dp"
-                android:bottomLeftRadius="2dp" android:topLeftRadius="2dp"
-                android:topRightRadius="2dp" />
+            <corners android:bottomRightRadius="40dp"
+                android:bottomLeftRadius="40dp" android:topLeftRadius="40dp"
+                android:topRightRadius="40dp" />
         </shape>
     </item>
 </layer-list>

@@ -14,32 +14,38 @@
     android:orientation="vertical"
     android:weightSum="8" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:adjustViewBounds="true"
-        android:padding="15dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo_sonar" />
+    <LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    android:background="@drawable/bg_app_2x"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+     >
 
+     <LinearLayout
+         android:layout_width="298dp"
+         android:layout_height="wrap_content" >
+
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="342dp"
+         android:src="@drawable/logo_prey_2x" />
+
+     </LinearLayout>
+
+      
     <Button
         android:id="@+id/btn_welcome_olduser"
-        style="@style/PreyButton"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
+        style="@style/PreyButton2"
+  android:layout_marginTop="10dp"
         android:text="@string/already_prey_user" />
 
     <Button
         android:id="@+id/btn_welcome_newuser"
-        style="@style/PreyButton"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
+        style="@style/PreyButton2" 
+        android:layout_marginTop="10dp"
         android:text="@string/new_user" />
-
+      
+</LinearLayout>
 </LinearLayout>

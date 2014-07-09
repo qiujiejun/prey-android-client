@@ -8,10 +8,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_bg" >
+    android:background="@color/screen_bg_white" >
 
+     <LinearLayout
+         android:id="@+id/new_account_logo"
+         android:layout_width="400dp"
+         android:layout_height="wrap_content"
+         android:background="@color/screen_bg"
+         android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo_prey_2x" />
+
+ </LinearLayout>
+     
     <TextView
         android:id="@+id/new_account_title"
+        android:layout_below="@+id/new_account_logo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -24,8 +39,8 @@
         android:id="@+id/new_account_name"
         style="@style/PreyEditText"
         android:layout_below="@+id/new_account_title"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:hint="@string/your_name"
         android:inputType="textPersonName"
         android:typeface="normal" >
@@ -37,8 +52,8 @@
         android:id="@+id/new_account_email"
         style="@style/PreyEditText"
         android:layout_below="@+id/new_account_name"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:hint="@string/your_email"
         android:inputType="textEmailAddress"
      />
@@ -47,8 +62,8 @@
         android:id="@+id/new_account_pass"
         style="@style/PreyEditText"
         android:layout_below="@+id/new_account_email"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:hint="@string/choose_a_6_char_pass"
         android:inputType="textPassword">
 
@@ -58,8 +73,8 @@
         android:id="@+id/new_account_repass"
         style="@style/PreyEditText"
         android:layout_below="@+id/new_account_pass"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:hint="@string/repeat_your_pass"
         android:inputType="textPassword">
 
@@ -67,11 +82,9 @@
 
     <Button
         android:id="@+id/new_account_btn_ok"
-        style="@style/PreyButton"
+        style="@style/PreyButton3"
         android:layout_below="@+id/new_account_repass"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+ 	    android:layout_marginTop="10dp"
         android:text="@string/create_my_account" />
 
 </RelativeLayout>
