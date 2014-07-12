@@ -5,42 +5,69 @@
   License: GPLv3
   Full license at "/LICENSE"
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/screen_bg_white" >
 
         
     <LinearLayout
          android:id="@+id/add_device_logo"
-         android:layout_width="500dp"
-         android:layout_height="wrap_content"
-         android:background="@color/screen_bg"
-         android:orientation="vertical" >
+         android:layout_width="fill_parent"
+         android:layout_height="40dp"         
+         android:background="@color/blackwhite"
+         android:orientation="vertical" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:src="@drawable/logo_prey_2x" />
 
- </LinearLayout>
+
  
-    <TextView
-        android:id="@+id/add_device_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_device_logo"
-        android:layout_margin="10dp"
-        android:text="@string/log_in_to_prey_h1"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/darker_txt" />
+ 
+
+    <LinearLayout 
+       android:layout_height="60dp"
+       android:layout_width="fill_parent">
+ 		<ImageButton 
+        	android:id="@+id/arrow"
+       		android:layout_height="match_parent"
+       		android:layout_width="50dp"
+      		android:background="@color/white"
+        	android:src="@drawable/arrow_2x"/>
+		<!-- <TextView
+     		android:id="@+id/add_device_title"
+     		android:layout_width="fill_parent"
+     		android:layout_height="match_parent"
+     		android:layout_margin="0dp"
+     		android:text="@string/log_in_to_prey_h1"
+     		android:textColor="@color/darker_txt"
+     		android:textSize="23sp"
+     		android:textStyle="bold" />-->
+ 	</LinearLayout>
+ 	
+ 
+    <LinearLayout
+         android:layout_gravity="center"
+         android:layout_width="fill_parent"
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
+         android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_2x" />
+
+    </LinearLayout>
+
+ 
+   
 
     <EditText
         android:id="@+id/add_device_email"
         style="@style/PreyEditText"
-        android:layout_below="@+id/add_device_title"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+       
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:hint="@string/your_prey_email"
         android:inputType="textEmailAddress">
 
@@ -50,9 +77,9 @@
     <EditText
         android:id="@+id/add_device_pass"
         style="@style/PreyEditText"
-        android:layout_below="@+id/add_device_email"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:hint="@string/your_prey_pass"
         android:inputType="textPassword">
 
@@ -61,10 +88,6 @@
     <Button
         android:id="@+id/add_device_btn_ok"
         style="@style/PreyButton3"
-        android:layout_below="@+id/add_device_pass"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
         android:text="@string/add_this_device" />
 
-</RelativeLayout>
+</LinearLayout>

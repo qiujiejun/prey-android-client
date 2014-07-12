@@ -11,45 +11,42 @@
     android:orientation="vertical"
     android:background="@color/screen_bg_white" >
 
-    
+        
     <LinearLayout
          android:id="@+id/add_device_logo"
          android:layout_width="fill_parent"
-         android:layout_height="60dp"         
+         android:layout_height="40dp"         
          android:background="@color/blackwhite"
          android:orientation="vertical" />
 
 
 
- 	<ImageButton 
-        android:id="@+id/arrow"
-       	android:layout_height="80dp"
-       	android:layout_width="50dp"
-      	android:background="@color/white"   	 
-        android:src="@drawable/arrow_2x"/>
+ 
+ 
+
+ 	
  
     <LinearLayout
          android:layout_gravity="center"
-         android:layout_width="298dp"
+         android:layout_width="fill_parent"
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
          android:layout_height="wrap_content" >
 
-         <ImageView
-             android:layout_width="wrap_content"
-             android:layout_height="342dp"
-             android:src="@drawable/logo_2x" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_2x" />
 
     </LinearLayout>
-     
+
  
-    
- 
+   
 
     <EditText
         android:id="@+id/add_device_email"
-        style="@style/PreyEditText.Large"
-        android:layout_width="fill_parent"
- 
-        android:layout_marginTop="0dp"
+        style="@style/PreyEditText"
+       
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="@string/your_prey_email"
@@ -60,10 +57,8 @@
 
     <EditText
         android:id="@+id/add_device_pass"
-        style="@style/PreyEditText.Large"
-        android:layout_width="fill_parent"
-     
-       android:layout_marginTop="0dp"
+        style="@style/PreyEditText"
+        
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="@string/your_prey_pass"
@@ -73,7 +68,7 @@
 
     <Button
         android:id="@+id/add_device_btn_ok"
-        style="@style/PreyButton3.Large"
+        style="@style/PreyButton3.Small"
         android:text="@string/add_this_device" />
 
 </LinearLayout>

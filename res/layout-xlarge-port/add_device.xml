@@ -8,20 +8,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_bg"
-    android:paddingLeft="100dp"
-    android:paddingRight="100dp" >
+    android:background="@color/screen_bg_white"
+      >
 
+     <LinearLayout
+         android:id="@+id/add_device_logo"
+         android:layout_width="1000dp"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:background="@color/screen_bg"
+         android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo_prey_2x" />
+
+ </LinearLayout>
+ 
     <TextView
         android:id="@+id/add_device_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+                android:layout_below="@+id/add_device_logo"
         android:gravity="center_horizontal"
         android:text="@string/log_in_to_prey_h1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/darker_txt"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <EditText
@@ -29,8 +44,8 @@
         style="@style/PreyEditText.XLarge"
         android:layout_width="fill_parent"
         android:layout_below="@+id/add_device_title"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:layout_marginTop="20dp"
         android:hint="@string/your_prey_email"
         android:inputType="textEmailAddress">
@@ -43,8 +58,8 @@
         style="@style/PreyEditText.XLarge"
         android:layout_width="fill_parent"
         android:layout_below="@+id/add_device_email"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:layout_marginTop="20dp"
         android:hint="@string/your_prey_pass"
         android:inputType="textPassword">
@@ -53,10 +68,10 @@
 
     <Button
         android:id="@+id/add_device_btn_ok"
-        style="@style/PreyButton.Large"
+        style="@style/PreyButton2.Large"
         android:layout_below="@+id/add_device_pass"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:layout_marginTop="80dp"
         android:text="@string/add_this_device" />
 

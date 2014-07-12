@@ -11,33 +11,21 @@
     android:orientation="vertical"
     android:background="@color/screen_bg_white" >
 
-    
-   <LinearLayout
-         android:id="@+id/add_device_logo"
+
+    <LinearLayout
+         android:layout_gravity="center"
          android:layout_width="fill_parent"
-         android:layout_height="40dp"         
-         android:background="@color/blackwhite"
-         android:orientation="vertical" />
-        
-    <LinearLayout 
-       android:layout_height="60dp"
-       android:layout_width="fill_parent">
- 		<ImageButton 
-        	android:id="@+id/arrow"
-       		android:layout_height="match_parent"
-       		android:layout_width="50dp"
-      		android:background="@color/white"
-        	android:src="@drawable/arrow_2x"/>
-		<!-- <TextView
-     		android:id="@+id/add_device_title"
-     		android:layout_width="fill_parent"
-     		android:layout_height="match_parent"
-     		android:layout_margin="0dp"
-     		android:text="@string/create_prey_account_h1"
-     		android:textColor="@color/darker_txt"
-     		android:textSize="23sp"
-     		android:textStyle="bold" />-->
- 	</LinearLayout>
+         android:layout_marginLeft="20dp"
+         android:layout_marginRight="20dp"
+         android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_2x" />
+
+    </LinearLayout>
+    
      
 
     <EditText
@@ -83,7 +71,7 @@
 
     <Button
         android:id="@+id/new_account_btn_ok"
-        style="@style/PreyButton3"
+        style="@style/PreyButton3.Small"
         android:text="@string/create_my_account" />
 
 </LinearLayout>

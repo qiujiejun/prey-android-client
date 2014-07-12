@@ -29,7 +29,7 @@
 
      <ImageView
          android:layout_width="wrap_content"
-         android:layout_height="342dp"
+         android:layout_height="142dp"
          android:src="@drawable/logo_prey_2x" />
 
      </LinearLayout>
@@ -40,16 +40,12 @@
 
     <Button
         android:id="@+id/login_btn_cp"
-        style="@style/PreyButton2"
- 
+        style="@style/PreyButton2.Small"
         android:text="@string/login_cp" />
 
     <Button
         android:id="@+id/login_btn_settings"
-        style="@style/PreyButton2"
- 
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="5dp"
+        style="@style/PreyButton2.Small"
         android:text="@string/manage_prey_settings" />
 
 </LinearLayout>

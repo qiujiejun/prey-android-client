@@ -11,6 +11,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
 import com.prey.R;
 public class WelcomeActivity extends PreyActivity {
 
@@ -25,6 +27,8 @@ public class WelcomeActivity extends PreyActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 
+	 
+		
 		Button newUser = (Button) findViewById(R.id.btn_welcome_newuser);
 		Button oldUser = (Button) findViewById(R.id.btn_welcome_olduser);
 		

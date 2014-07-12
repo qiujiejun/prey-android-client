@@ -9,7 +9,7 @@
                
                 android:angle="90" />
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="@color/fb_border_start"
               
                  />          

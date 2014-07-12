@@ -18,8 +18,8 @@
     <string name="accept">Accept</string>
     <string name="updating_info_message">Updating information, please wait…</string>
     <!-- Welcome screen -->
-    <string name="already_prey_user">Already a Prey user</string>
-    <string name="new_user">New user</string>
+    <string name="already_prey_user">ALREADY A PREY USER</string>
+    <string name="new_user">NEW USER</string>
     <!-- Login screen -->
     <string name="device_ready_h1">Device ready</string>
     <string name="device_not_ready_h1">Device not ready!</string>
@@ -29,25 +29,25 @@
     <string name="manage_prey_settings">Manage app settings</string>
     <!-- Password screen -->
     <string name="type_your_pass">Type in your password</string>
-    <string name="log_in">Log in</string>
+    <string name="log_in">LOG IN</string>
     <!-- New account screen -->
     <string name="create_prey_account_h1">Create new account</string>
     <string name="your_name">Your name</string>
     <string name="your_email">Your email</string>
     <string name="choose_a_6_char_pass">Choose a password</string>
     <string name="repeat_your_pass">Repeat your password</string>
-    <string name="create_my_account">Create my account!</string>
+    <string name="create_my_account">CREATE MY ACCOUNT!</string>
     <string name="creating_account_please_wait">Creating account. Please wait…</string>
     <string name="new_account_congratulations_text">You\'ve successfully installed Prey on your device. To finish the setup process you need to verify your email address by following the link we just sent to %s.</string>
     <!-- Add device to account screen -->
     <string name="log_in_to_prey_h1">Log in to Prey</string>
     <string name="your_prey_email">Your Prey account email</string>
     <string name="your_prey_pass">Your Prey account password</string>
-    <string name="add_this_device">Add this device!</string>
+    <string name="add_this_device">ADD THIS DEVICE!</string>
     <string name="device_added_congratulations_text">You have successfully associated this device with your Prey account. Now take a minute to set it up.</string>
     <!-- Congratulations screen -->
     <string name="device_set_up_h1">Device set up!</string>
-    <string name="go_to_settings">Go to settings</string>
+    <string name="go_to_settings">GO TO SETTINGS</string>
     <!-- Status screen -->
     <string name="execution_status">Execution status</string>
     <string name="running">Running</string>
@@ -217,7 +217,7 @@
     <!-- Permission Information --> 
     <string name="permission_title_h1">Extra Protection</string> 
     <string name="permission_body_text">Prey was granted special permissions in order to lock your device and to prevent thieves from uninstalling it. If you ever need to remove Prey, you first have to revoke these permissions from within the app.</string>
-    <string name="go_to_congratulations">Next</string>
+    <string name="go_to_congratulations">NEXT</string>
     <!-- Feedback -->
     <string name="feedback_principal_title">Is everything alright, dear?</string>
     <string name="feedback_principal_message">It seems you\'ve been using Prey for a while now. Would you tell us what you think about it?</string>

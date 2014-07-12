@@ -15,7 +15,7 @@
         android:id="@+id/login_img_top_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="150dp"
+        android:layout_marginRight="100dp"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:src="@drawable/top_left_logo" />
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="-10dp"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:src="@drawable/prey_text" />
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp" >
+        android:layout_marginTop="20dp" >
 
         <ImageView
             android:id="@+id/login_img"
@@ -54,7 +55,6 @@
             android:text="@string/device_ready_h1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/darker_txt"
-            android:textSize="30dp"
             android:textStyle="bold" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:paddingLeft="10dp"
             android:text="@string/device_ready_h2"
             android:textColor="@color/lighter_txt"
-            android:textSize="20dp" />
+            android:textSize="12dp" />
     </RelativeLayout>
 
 </LinearLayout>
