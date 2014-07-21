@@ -50,7 +50,7 @@ public class PermissionInformationActivity extends PreyActivity {
 	
 	private void showScreen(){
 		setContentView(R.layout.permission_information);
-
+		try{
 		Button ok = (Button) findViewById(R.id.congrats_btn_ok);
 		ok.setOnClickListener(new View.OnClickListener() {
 
@@ -63,5 +63,8 @@ public class PermissionInformationActivity extends PreyActivity {
 				finish();
 			}
 		});
+		}catch(Exception e){
+			PreyLogger.e("Error:"+e.getMessage(), e);
+		}
 	}
 }

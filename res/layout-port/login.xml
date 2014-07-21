@@ -5,52 +5,55 @@
   License: GPLv3
   Full license at "/LICENSE"
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_alignParentTop="true"
-    android:background="@color/screen_bg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/bacg_xhdpi_2x"
+
+
       >
+ 
 
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    
-    android:background="@drawable/bg_app_2x"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-     >
-
-     <LinearLayout
-         android:layout_width="298dp"
-         android:layout_height="wrap_content" >
+ 
 
      <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="342dp"
-         android:src="@drawable/logo_prey_2x" />
+         
+ 
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+ 
+ 		android:layout_centerVertical="true"
+        android:layout_marginTop="140dp"
+         android:src="@drawable/logo_prey_1x" />
 
-     </LinearLayout>
+ 
 
 
     
 
+ 
+    
+    
+    
+    
 
     <Button
         android:id="@+id/login_btn_cp"
         style="@style/PreyButton2"
- 
+        android:layout_above="@+id/login_btn_settings"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
         android:text="@string/login_cp" />
 
     <Button
         android:id="@+id/login_btn_settings"
         style="@style/PreyButton2"
- 
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="5dp"
+ 		android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
         android:text="@string/manage_prey_settings" />
 
-</LinearLayout>
-</LinearLayout>
+ 
+</RelativeLayout>

@@ -6,6 +6,7 @@
  ******************************************************************************/
 package com.prey.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -13,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -20,9 +22,12 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prey.PreyAccountData;
+import com.prey.PreyConfig;
 import com.prey.R;
 import com.prey.exceptions.NoMoreDevicesAllowedException;
 import com.prey.exceptions.PreyException;
@@ -56,14 +61,30 @@ public class AddDeviceToAccountActivity extends SetupActivity {
 			}
 		});
 		
+		  
 		EditText password = (EditText) findViewById(R.id.add_device_pass);
 		password.setTypeface(Typeface.DEFAULT);
 		password.setTransformationMethod(new PasswordTransformationMethod());
 		
 		EditText email = (EditText) findViewById(R.id.add_device_email);
 		email.setImeOptions(EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+		
+		
+		TextView forgot =(TextView)findViewById(R.id.forgot);
+		forgot.setOnClickListener(new View.OnClickListener() {
 
+			public void onClick(View v) {
+				String url=PreyConfig.getPreyConfig(getApplicationContext()).getPreyPanelUrl();
+				Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse(url));
+				startActivity(browserIntent);
+				
+			}
+		});
+		
+		
 	}
+	
+ 
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {

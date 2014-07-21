@@ -38,10 +38,9 @@
     
     <style name="PreyButton2">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginTop">10dp</item>
@@ -50,14 +49,18 @@
         <item name="android:gravity">center</item>
     </style>
     
+    
+    
     <style name="PreyButton2.Large">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:layout_marginLeft">120dp</item>
-        <item name="android:layout_marginRight">120dp</item>
+        <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:background">@drawable/button_round</item>
         <item name="android:gravity">center</item>        
     </style>
@@ -75,11 +78,11 @@
     </style>
 
     <style name="PreyButton3">
-        <item name="android:textColor">#047298</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#39A6C6</item>
+        <item name="android:textSize">14sp</item>
+        
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
@@ -95,8 +98,8 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_height">60dp</item>
-        <item name="android:layout_marginLeft">120dp</item>
-        <item name="android:layout_marginRight">120dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/button_round</item>
@@ -155,12 +158,14 @@
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginTop">2dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">normal</item>
-        <item name="android:background">@drawable/input_text</item>
+        <item name="android:background">@drawable/input_text2</item>
         <item name="android:ems">8</item>
     </style>
+    
 
     <style name="PreyEditText.Large">
         <item name="android:layout_height">72dp</item>

@@ -5,7 +5,7 @@
   License: GPLv3
   Full license at "/LICENSE"
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_alignParentTop="true"
@@ -14,25 +14,17 @@
     android:orientation="vertical"
       >
 
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    
-    android:background="@drawable/bg_app_2x"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-     >
 
-     <LinearLayout
-         android:layout_width="298dp"
-         android:layout_height="wrap_content" >
-
+ 
      <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="142dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+ 
+ 		android:layout_centerVertical="true"
+        android:layout_marginTop="140dp"
          android:src="@drawable/logo_prey_2x" />
 
-     </LinearLayout>
+
 
 
     
@@ -41,12 +33,16 @@
     <Button
         android:id="@+id/login_btn_cp"
         style="@style/PreyButton2.Small"
+                android:layout_above="@+id/login_btn_settings"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
         android:text="@string/login_cp" />
 
     <Button
         android:id="@+id/login_btn_settings"
         style="@style/PreyButton2.Small"
+         		android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
         android:text="@string/manage_prey_settings" />
 
-</LinearLayout>
-</LinearLayout>
+</RelativeLayout>

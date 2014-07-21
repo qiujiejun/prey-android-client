@@ -5,40 +5,36 @@
   License: GPLv3
   Full license at "/LICENSE"
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
+        android:gravity="center_horizontal"
     android:background="@color/screen_bg_white" >
 
         
-    <LinearLayout
-         android:id="@+id/add_device_logo"
-         android:layout_width="fill_parent"
-         android:layout_height="40dp"         
-         android:background="@color/blackwhite"
-         android:orientation="vertical" />
-
-
-
- 
  
 
- 	
- 
-    <LinearLayout
-         android:layout_gravity="center"
-         android:layout_width="fill_parent"
-         android:layout_marginLeft="20dp"
-         android:layout_marginRight="20dp"
-         android:layout_height="wrap_content" >
 
+     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/welcome" />
+     
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+                        android:layout_height="80dp"
+            android:layout_above="@+id/add_device_email"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
             android:src="@drawable/logo_2x" />
 
-    </LinearLayout>
+ 
 
  
    
@@ -46,7 +42,7 @@
     <EditText
         android:id="@+id/add_device_email"
         style="@style/PreyEditText"
-       
+        android:layout_above="@+id/add_device_pass"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="@string/your_prey_email"
@@ -58,7 +54,7 @@
     <EditText
         android:id="@+id/add_device_pass"
         style="@style/PreyEditText"
-        
+        android:layout_above="@+id/add_device_btn_ok"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="@string/your_prey_pass"
@@ -69,6 +65,19 @@
     <Button
         android:id="@+id/add_device_btn_ok"
         style="@style/PreyButton3.Small"
+        android:layout_above="@+id/forgot"
         android:text="@string/add_this_device" />
+    
+    
+        <TextView
+        android:id="@+id/forgot"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/password_dialog_forgot_text1" />
 
-</LinearLayout>
+</RelativeLayout>

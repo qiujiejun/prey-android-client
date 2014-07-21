@@ -6,9 +6,11 @@
  ******************************************************************************/
 package com.prey.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 
 import com.prey.R;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -18,9 +20,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prey.PreyAccountData;
@@ -31,7 +36,7 @@ import com.prey.net.PreyWebServices;
 public class CreateAccountActivity extends SetupActivity {
 	private static final int ERROR = 1;
 	private String password = null;
-	private String repassword = null;
+	//private String repassword = null;
 	private String name = null;
 	private String email = null;
 	private String error = null;
@@ -48,12 +53,12 @@ public class CreateAccountActivity extends SetupActivity {
 				name = ((EditText) findViewById(R.id.new_account_name)).getText().toString();
 				email = ((EditText) findViewById(R.id.new_account_email)).getText().toString();
 				password = ((EditText) findViewById(R.id.new_account_pass)).getText().toString();
-				repassword = ((EditText) findViewById(R.id.new_account_repass)).getText().toString();
+				//repassword = ((EditText) findViewById(R.id.new_account_repass)).getText().toString();
 
 				if (name.equals("") || email.equals("") || password.equals(""))
 					Toast.makeText(CreateAccountActivity.this, R.string.error_all_fields_are_required, Toast.LENGTH_LONG).show();
-				else if (!password.equals(repassword))
-					Toast.makeText(CreateAccountActivity.this, R.string.preferences_passwords_do_not_match, Toast.LENGTH_LONG).show();
+				//else if (!password.equals(repassword))
+			//		Toast.makeText(CreateAccountActivity.this, R.string.preferences_passwords_do_not_match, Toast.LENGTH_LONG).show();
 				else {
 					new CreateAccount().execute(name, email, password);
 				}
@@ -65,9 +70,9 @@ public class CreateAccountActivity extends SetupActivity {
 		password.setTypeface(Typeface.DEFAULT);
 		password.setTransformationMethod(new PasswordTransformationMethod());
 		
-		password = (EditText) findViewById(R.id.new_account_repass);
-		password.setTypeface(Typeface.DEFAULT);
-		password.setTransformationMethod(new PasswordTransformationMethod());
+		//password = (EditText) findViewById(R.id.new_account_repass);
+	//	password.setTypeface(Typeface.DEFAULT);
+	//	password.setTransformationMethod(new PasswordTransformationMethod());
 		
 		//To avoid setting these Imeoptions on each layout :)
 		EditText name = (EditText) findViewById(R.id.new_account_name);
@@ -76,8 +81,19 @@ public class CreateAccountActivity extends SetupActivity {
 		EditText email = (EditText) findViewById(R.id.new_account_email);
 		email.setImeOptions(EditorInfo.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 		
-	}
+		TextView have_account =(TextView)findViewById(R.id.have_account);
+		have_account.setOnClickListener(new View.OnClickListener() {
 
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), AddDeviceToAccountActivity.class);
+				startActivity(intent);
+				finish();
+
+			}
+		});
+		
+	}
+	
 
 	private class CreateAccount extends AsyncTask<String, Void, Void> {
 

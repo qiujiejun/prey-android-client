@@ -5,58 +5,39 @@
   License: GPLv3
   Full license at "/LICENSE"
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/screen_bg_white" >
 
     
-    <LinearLayout
-         android:id="@+id/add_device_logo"
-         android:layout_width="fill_parent"
-         android:layout_height="60dp"
-         android:background="@color/blackwhite"
-         android:orientation="vertical" />
-   <LinearLayout 
-       android:layout_height="80dp"
-       android:layout_width="fill_parent">
- 		<ImageButton 
-        	android:id="@+id/arrow"
-       		android:layout_height="match_parent"
-       		android:layout_width="50dp"
-      		android:background="@color/white"
-        	android:src="@drawable/arrow_2x"/>
-		<TextView
-     		android:id="@+id/new_account_title"
-     		android:layout_width="fill_parent"
-     		android:layout_height="match_parent"
-     		android:layout_margin="0dp"
-     		android:text="@string/create_prey_account_h1"
-     		android:textColor="@color/darker_txt"
-     		android:textSize="23sp"
-     		android:textStyle="bold" />
- 	</LinearLayout>
-    <LinearLayout
-         android:layout_gravity="center"
-         android:layout_width="298dp"
-         android:layout_height="wrap_content" >
-         <ImageView
-             android:layout_width="wrap_content"
-             android:layout_height="342dp"
-             android:src="@drawable/logo_2x" />
-     </LinearLayout>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+	    android:gravity="center"
+        android:text="@string/create_prey_account_h1" />
      
- 
-    
+    <ImageView
+        android:id="@+id/logo_img"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_above="@+id/new_account_name"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/logo_2x" />
 
     <EditText
         android:id="@+id/new_account_name"
         style="@style/PreyEditText.Large"
-         
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_above="@+id/new_account_email"         
         android:hint="@string/your_name"
         android:inputType="textPersonName"
         android:textAppearance="?android:attr/textAppearanceLargeInverse" >
@@ -67,9 +48,7 @@
     <EditText
         android:id="@+id/new_account_email"
         style="@style/PreyEditText.Large"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_above="@+id/new_account_pass"
         android:hint="@string/your_email"
         android:inputType="textEmailAddress"
         android:textAppearance="?android:attr/textAppearanceLargeInverse" />
@@ -77,31 +56,34 @@
     <EditText
         android:id="@+id/new_account_pass"
         style="@style/PreyEditText.Large"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_above="@+id/new_account_btn_ok"
         android:hint="@string/choose_a_6_char_pass"
         android:inputType="textPassword"
         android:textAppearance="?android:attr/textAppearanceLargeInverse" >
 
     </EditText>
     
-    <EditText
-        android:id="@+id/new_account_repass"
-        style="@style/PreyEditText.Large"
-         
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="@string/repeat_your_pass"
-        android:inputType="textPassword"
-        android:textAppearance="?android:attr/textAppearanceLargeInverse" >
-
-    </EditText>
+ 
 
     <Button
         android:id="@+id/new_account_btn_ok"
         style="@style/PreyButton3.Large"
+                android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/have_account"
         android:text="@string/create_my_account"      />
+    
+    
+        <TextView
+        android:id="@+id/have_account"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"     
+        android:layout_marginTop="40dp"   
+	    android:gravity="center"
+        android:text="@string/have_an_account" />   
+        
 
-</LinearLayout>
+</RelativeLayout>
