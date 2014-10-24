@@ -18,7 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class FormFeedbackActivity extends PreyActivity {
+public class FormFeedBackActivity extends PreyActivity {
 
 	private static final int SHOW_POPUP = 0;
 

@@ -125,7 +125,7 @@
     <string name="preferences_admin_disabled_title">ให้สิทธิ์พิเศษ</string>
     <string name="preferences_admin_disabled_summary">อนุญาตให้ล็อคและถอนการติดตั้งการป้องกัน</string>
     <string name="preferences_admin_enabled_dialog_title">โปรดทราบ</string>
-    <string name="preferences_admin_enabled_dialog_message">โดยการคลิก \'ใช่' คุณจะถอนสิทธิ์ของผู้ดูแล Prey ในอุปกรณ์นี้ และจะไม่มีสิทธิ์เหล่านี้อีก Prey จะไม่สามารถล็อคอุปกรณ์ของคุณได้ คุณแน่ใจหรือไม่?</string>
+    <string name="preferences_admin_enabled_dialog_message">โดยการคลิก ใช คุณจะถอนสิทธิ์ของผู้ดูแล Prey ในอุปกรณ์นี้ และจะไม่มีสิทธิ์เหล่านี้อีก Prey จะไม่สามารถล็อคอุปกรณ์ของคุณได้ คุณแน่ใจหรือไม่?</string>
     <string name="preferences_admin_disabled_dialog_title">สิทธิ์ที่พิเศษ</string>
     <string name="preferences_admin_disabled_dialog_message">คุณกำลังจะให้สิทธิ์การรักษาความปลอดภัยกับ Prey เพื่อช่วยให้คุณสามารถล็อคอุปกรณ์ของคุณจากระยะไกลได้\nคลิกใช่เพื่อดำเนินการต่อ</string>
     <string name="device_admin_label">รักษาความปลอดภัยพิเศษ</string>

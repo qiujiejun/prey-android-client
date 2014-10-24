@@ -103,7 +103,7 @@ public class LoginActivity extends PasswordActivity {
 
 	
 	private void showFeedback(Context ctx){
-		Intent popup = new Intent(ctx, FeedbackActivity.class);
+		Intent popup = new Intent(ctx, FeedBackActivity.class);
 		popup.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		ctx.startActivity(popup);
 	}

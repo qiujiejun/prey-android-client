@@ -28,10 +28,9 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 
-
 import com.prey.actions.LockAction;
 import com.prey.actions.PreyAction;
-import com.prey.activities.FeedbackActivity;
+import com.prey.activities.FeedBackActivity;
 import com.prey.activities.WelcomeActivity;
 import com.prey.managers.PreyConnectivityManager;
 import com.prey.net.PreyWebServices;
@@ -41,7 +40,7 @@ import com.prey.services.PreyDisablePowerOptionsService;
 public class PreyConfig {
 	
 	//Set false in production
-	public static final boolean LOG_DEBUG_ENABLED = false;
+    public static final boolean LOG_DEBUG_ENABLED = true;
 	
 	// Set to 1000 * 60 in production.
 	public static final long DELAY_MULTIPLIER = 1000 * 60; 
@@ -138,32 +137,32 @@ public class PreyConfig {
 	private String deviceID = "";
 	private String apiKey = "";
 	private boolean missing;
-	private String email;
-	private String destinationSms;
+	private final String email;
+	private final String destinationSms;
 	 
-	private boolean shouldCheckSimChange;
+	private final boolean shouldCheckSimChange;
  
-	private boolean isTheAccountAlreadyVerified;
+	private final boolean isTheAccountAlreadyVerified;
 	private boolean securityPrivilegesAlreadyPrompted;
-	private boolean isCamouflageSet;
+	private final boolean isCamouflageSet;
 	private boolean locked;
 	private boolean runOnce;
-	private boolean froyoOrAbove;
-	private boolean cupcakeOrAbove;
-	private boolean gingerbreadOrAbove;
-	private boolean kitKatOrAbove;
-	private boolean jellyBeanOrAbove;
-	private boolean iceCreamOrAbove;
-	private boolean honeycombOrAbove;
+	private final boolean froyoOrAbove;
+	private final boolean cupcakeOrAbove;
+	private final boolean gingerbreadOrAbove;
+	private final boolean kitKatOrAbove;
+	private final boolean jellyBeanOrAbove;
+	private final boolean iceCreamOrAbove;
+	private final boolean honeycombOrAbove;
 	
 	private boolean camouflageSet;
 	
 	private String lastEvent;
-	private String previousSsid;
+	private final String previousSsid;
 	private boolean isRevokedPassword;
 	private String revokedPassword;
 	
-	private long installationDate;
+	private final long installationDate;
 	private int flagFeedback;
 	
 	 
@@ -190,7 +189,7 @@ public class PreyConfig {
 	private boolean scheduled;
 	private int minuteScheduled;
 	
-	private Context ctx;
+	private final Context ctx;
 
 	private PreyConfig(Context ctx) {
 		this.ctx = ctx;
@@ -221,7 +220,7 @@ public class PreyConfig {
 		
 
 
-		this.flagFeedback=settings.getInt(PreyConfig.FLAG_FEEDBACK, FeedbackActivity.FLAG_FEEDBACK_INIT);
+		this.flagFeedback=settings.getInt(PreyConfig.FLAG_FEEDBACK, FeedBackActivity.FLAG_FEEDBACK_INIT);
 		 
 		
 		this.previousSsid=settings.getString(PreyConfig.PREVIOUS_SSID, "");
@@ -281,7 +280,8 @@ public class PreyConfig {
 	
 	SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
 		
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		@Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 			if (key.equals(PREFS_DISABLE_POWER_OPTIONS)){
 				disablePowerOptions = sharedPreferences.getBoolean(PREFS_DISABLE_POWER_OPTIONS, false);
 				if(disablePowerOptions){
@@ -716,7 +716,7 @@ public class PreyConfig {
 	}
 	 
 	public boolean showFeedback(){
-		return FeedbackActivity.showFeedback(installationDate, flagFeedback);
+		return FeedBackActivity.showFeedback(installationDate, flagFeedback);
 	}
 	
 	public void setCamouflageSet(boolean camouflageSet){

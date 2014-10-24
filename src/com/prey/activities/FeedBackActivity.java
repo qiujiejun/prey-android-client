@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-public class FeedbackActivity extends PreyActivity {
+public class FeedBackActivity extends PreyActivity {
 
 	private static final int SHOW_POPUP = 0;
 
@@ -51,7 +51,7 @@ public class FeedbackActivity extends PreyActivity {
 
 			alert.setNeutralButton(R.string.feedback_principal_button2, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
-					Intent popup = new Intent(getApplicationContext(), FormFeedbackActivity.class);
+					Intent popup = new Intent(getApplicationContext(), FormFeedBackActivity.class);
 					popup.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(popup);
 					PreyConfig.getPreyConfig(getApplicationContext()).setFlagFeedback(FLAG_FEEDBACK_SEND);
