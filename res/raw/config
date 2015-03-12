@@ -14,54 +14,28 @@ prey-minor-version=80
 prey-answers=answers
 prey-support=support
 prey-panel=panel
+
+prey-campaign=login?utm_source=aplicacion-android&utm_medium=boton-login&utm_campaign=login-from-app
  
 #produccion
-prey-subdomain=solid
-prey-ui-subdomain=solid
-prey-domain=preyproject.com
+prey-subdomain=subdmain
+prey-domain=domain.com
 
-
-#QA
-#prey-subdomain=panel
-#prey-ui-subdomain=panel
-#prey-domain=preyproject.com
-
-
-#staging
-#prey-subdomain=control
-#prey-ui-subdomain=control
-#prey-domain=preyapp.com
- 
-#prey-subdomain=10 
-#prey-ui-subdomain=10
-#prey-domain=0.0.25:8000
-
-
-api-v1=api/v1/
 api-v2=api/v2/
 
-#api-key-batch=i4ggtsui108y
-#email-batch=testforkhq@gmail.com
+scheduled=false
+minute-scheduled=5
+
 api-key-batch=
 email-batch=
 
-
 #gcm
 gcm-id-prefix=GCM__
-gcm-id=578864628893
-
-
-#c2dm
-#gcm-id-prefix=
-#gcm-id=prey-c2dm@usefork.com
+#prod  
+gcm-id=0000000000
 
 c2dm-action=message
 c2dm-message-sync=sync
 
-email-feedback=android-feedback@preyproject.com
-subject-feedback=prey android feedback
-
-#Analytics
-analytics-ua=UA-8743344-5
-
-minute-scheduled=30
+email-feedback=mail@domain.com
+subject-feedback=Prey Android Feedback

@@ -41,6 +41,10 @@ public class FileConfigReader {
 		
 	}
 	
+	public String getPreyCampaign(){
+		return properties.getProperty("prey-campaign");
+	}
+	
 	public String getPreyPanel(){
 		return properties.getProperty("prey-panel");
 	}
@@ -89,10 +93,6 @@ public class FileConfigReader {
 		return properties.getProperty("subject-feedback");
 	}
 	
-	public String getApiV1(){
-        return properties.getProperty("api-v1");
-	}
-	
 	public String getApiV2(){
         return properties.getProperty("api-v2");
 	}
@@ -112,4 +112,5 @@ public class FileConfigReader {
 	public int getMinuteScheduled() {
 		return Integer.parseInt(properties.getProperty("minute-scheduled"));
 	}
+	
 }

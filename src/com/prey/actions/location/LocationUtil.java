@@ -17,6 +17,7 @@ import com.prey.PreyPhone.Wifi;
 import com.prey.actions.HttpDataService;
 import com.prey.exceptions.PreyException;
 import com.prey.json.UtilJson;
+import com.prey.managers.PreyWifiManager;
 import com.prey.net.PreyWebServices;
 import com.prey.services.LocationService;
 
@@ -32,8 +33,8 @@ public class LocationUtil {
 			LocationManager mlocManager = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
 			boolean isGpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 			boolean isNetworkEnabled = mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-			PreyLogger.i("gps status:" + isGpsEnabled);
-			PreyLogger.i("net status:" + isNetworkEnabled);
+			PreyLogger.d("gps status:" + isGpsEnabled);
+			PreyLogger.d("net status:" + isNetworkEnabled);
 			PreyLocation location = null;
 			if (isGpsEnabled || isNetworkEnabled) {
 				int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(ctx);
@@ -47,7 +48,7 @@ public class LocationUtil {
 			} else {
 				location = getDataLocationWifi(ctx);
 			}
-			
+			PreyLogger.d("locationData:" + location.getLat()+" "+location.getLng()+" "+location.getAccuracy());
 			data=convertData(location);
 		} catch (Exception e) {
 			PreyLogger.e("Error causa:" + e.getMessage(), e);
@@ -60,8 +61,21 @@ public class LocationUtil {
 	public static PreyLocation getDataLocationWifi(Context ctx) throws Exception {
 		PreyLocation location = null;
 		PreyPhone preyPhone = new PreyPhone(ctx);
+		boolean disableWifi=false;
+		if (!PreyWifiManager.getInstance(ctx).isWifiEnabled()) {
+			disableWifi=true;
+			PreyWifiManager.getInstance(ctx).setWifiEnabled(true);
+			Thread.sleep(2000);
+		}
 		List<Wifi> listWifi = preyPhone.getListWifi();
+		if (disableWifi){
+			PreyWifiManager.getInstance(ctx).setWifiEnabled(false);
+		}
 		location = PreyWebServices.getInstance().getLocation(ctx, listWifi);
+ 
+ 
+		
+		
 		return location;
 	}
 
@@ -72,19 +86,32 @@ public class LocationUtil {
 			play.startPeriodicUpdates();
 		} catch (Exception e) {
 		}
+		int i=0;
 		Location currentLocation = play.getLastLocation(ctx);
-		while (currentLocation == null) {
+		while (currentLocation == null&&i<3) {
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 			}
 			currentLocation = play.getLastLocation(ctx);
+			i=i+1;
+		}
+		PreyLocation preyLocation=null;
+		if(currentLocation!=null){
+			preyLocation = new PreyLocation(currentLocation);
+		}else{
+			if(currentLocation==null){
+				preyLocation = getPreyLocationAppService(ctx);
+			}
+			if(currentLocation==null){
+				preyLocation = getDataLocationWifi(ctx);
+			}
 		}
 		try {
 			play.stopPeriodicUpdates();
 		} catch (Exception e) {
 		}
-		return new PreyLocation(currentLocation);
+		return preyLocation;
 	}
 
 	public static PreyLocation getPreyLocationAppService(Context ctx) throws Exception {

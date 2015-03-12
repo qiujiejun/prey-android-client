@@ -14,8 +14,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +29,6 @@ import android.telephony.TelephonyManager;
 import com.prey.actions.LockAction;
 import com.prey.actions.PreyAction;
 import com.prey.activities.FeedBackActivity;
-import com.prey.activities.WelcomeActivity;
 import com.prey.managers.PreyConnectivityManager;
 import com.prey.net.PreyWebServices;
 import com.prey.services.PreyDisablePowerOptionsService;
@@ -46,18 +43,17 @@ public class PreyConfig {
 	public static final long DELAY_MULTIPLIER = 1000 * 60; 
 	
 	// the minimum time interval for GPS notifications, in milliseconds (default 60000).
-	public static final long LOCATION_PROVIDERS_MIN_REFRESH_INTERVAL = 60000;
+	public static final long LOCATION_PROVIDERS_MIN_REFRESH_INTERVAL = 10000;
 	
 	// the minimum distance interval for GPS notifications, in meters (default 20)
 	public static final float LOCATION_PROVIDERS_MIN_REFRESH_DISTANCE = 20;
 	
 	// max "age" in ms of last location (default 120000).
-	public static final float LAST_LOCATION_MAX_AGE = 120000;
+	public static final float LAST_LOCATION_MAX_AGE = 30000;
 	
 	//Amount of millisecond the app can be suspended before ask for the password. 
 	public static final long PASSWORD_PROMPT_DELAY = 5000;
 	
-//	public static final String CONTROL_PANEL_URL = "https://panel.preyproject.com/login";
 
 
 	public static final String PREFS_NAME = "PREY_PREFS";
@@ -66,7 +62,6 @@ public class PreyConfig {
 	public static final String PREFS_API_KEY = "API_KEY";
 	public static final String PREFS_LOGIN = "LOGIN";
 	public static final String PREFS_EMAIL = "EMAIL";
-	//public static final String PREFS_PASSWORD = "PASSWORD";
 	public static final String PREFS_PREY_VERSION = "PREY_VERSION";
 	public static final String PREFS_IS_MISSING = "IS_MISSING";
 	public static final String PREFS_SMS_RUN = "PREFS_SMS_RUN";
@@ -82,7 +77,7 @@ public class PreyConfig {
 	public static final String ACTIVATE_DEVICE_ADMIN = "ACTIVATE_DEVICE_ADMIN";
  
 	public static final String IS_CAMOUFLAGE_SET = "PREFS_CAMOUFLAGE";
-	public static final String UNLOCK_PASS = "UNLOCK_PASS";
+	 
 	public static final String IS_LOCK_SET = "IS_LOCK_SET";
 	public static final String LAST_LAT = "LAST_LAT";
 	public static final String LAST_LON = "LAST_LON";
@@ -111,7 +106,7 @@ public class PreyConfig {
 	public static final String SEND_NOTIFICATION_ID="SEND_NOTIFICATION_ID";
 	public static final String SIGNAL_FLARE_DATE="SIGNAL_FLARE_DATE";
 	
-	public static final String VERSION_PREY_DEFAULT="1.1.3";
+	public static final String VERSION_PREY_DEFAULT="1.2.6";
 	
 	public static final String SEND_DATA="SEND_DATA";
 	
@@ -154,6 +149,7 @@ public class PreyConfig {
 	private final boolean jellyBeanOrAbove;
 	private final boolean iceCreamOrAbove;
 	private final boolean honeycombOrAbove;
+	private final boolean eclairOrAbove;
 	
 	private boolean camouflageSet;
 	
@@ -199,6 +195,7 @@ public class PreyConfig {
 		this.honeycombOrAbove = Integer.parseInt(Build.VERSION.SDK) >= 13;
 		this.gingerbreadOrAbove = Integer.parseInt(Build.VERSION.SDK) >= 9;
 		this.froyoOrAbove = Integer.parseInt(Build.VERSION.SDK) >= 8;
+		this.eclairOrAbove = Integer.parseInt(Build.VERSION.SDK) >=5;
 		this.cupcakeOrAbove = Integer.parseInt(Build.VERSION.SDK) == 3;
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(ctx);
 		settings.registerOnSharedPreferenceChangeListener(listener);
@@ -292,13 +289,18 @@ public class PreyConfig {
 			}
 			
 			if (key.equals(PREFS_SCHEDULED)){
-				int valor=Integer.parseInt(sharedPreferences.getString(PREFS_SCHEDULED,"0"));
-				setScheduled(valor>0);
-				setMinuteScheduled(valor);
-				PreyScheduled.getInstance(ctx).reset();
+				int value=Integer.parseInt(sharedPreferences.getString(PREFS_SCHEDULED,"0"));
+				int valueOld=getMinuteScheduled();
+				if(value!=valueOld){
+					setScheduled(value>0);
+					setMinuteScheduled(value);
+					if (value>0){
+						PreyScheduled.getInstance(ctx).run(value);
+					}else{
+						PreyScheduled.getInstance(ctx).reset();
+					}
+				}
 			}
-			
-			
 			PreyConfig.deleteCacheInstance();
 		}
 	};
@@ -329,15 +331,6 @@ public class PreyConfig {
 	public void setMissing(boolean missing) {
 		this.missing = missing;
 		this.saveString(PreyConfig.PREFS_IS_MISSING, Boolean.valueOf(missing).toString());
-	}
-	
-	public void setUnlockPass(String unlockPass) {
-		this.saveString(PreyConfig.UNLOCK_PASS, unlockPass);
-	}
-	
-	public String getUnlockPass() {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(ctx);
-		return settings.getString(PreyConfig.UNLOCK_PASS, "preyrocks");
 	}
 	
 	public void setLock(boolean locked) {
@@ -426,7 +419,7 @@ public class PreyConfig {
 		String deviceId = settings.getString(PreyConfig.PREFS_DEVICE_ID, null);
 		
 		boolean isVerified = deviceId != null;
-		
+		/*
 		if (notifyUser && !isVerified){
 			String notificationTitle = ctx.getText(R.string.not_verified_device_title).toString();
 			NotificationManager nm = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -440,7 +433,7 @@ public class PreyConfig {
 			notification.setLatestEventInfo(ctx, ctx.getText(R.string.not_verified_device_title), notificationToShow, contentIntent);
 	
 			nm.notify(R.string.preyForAndroid_name, notification);
-		}
+		}*/
 			
 		return isVerified;
 	}
@@ -645,6 +638,9 @@ public class PreyConfig {
 	public boolean isHoneycombOrAbove() {
 		return honeycombOrAbove;
 	}
+	public boolean isEclairOrAbove() {
+		return eclairOrAbove;
+	}
 	
 	public String getPreyVersion() {
 		String versionName=VERSION_PREY_DEFAULT;
@@ -662,6 +658,10 @@ public class PreyConfig {
 	
 	public String getPreyDomain() {
 		return FileConfigReader.getInstance(this.ctx).getPreyDomain();
+	}
+	
+	public String getPreyCampaign() {
+		return FileConfigReader.getInstance(this.ctx).getPreyCampaign();
 	}
 	
 	public String getc2dmAction(){
@@ -684,8 +684,9 @@ public class PreyConfig {
 	
 	public String getPreyPanelUrl() {
 		String panel = FileConfigReader.getInstance(this.ctx).getPreyPanel();
-		return HTTP.concat(panel).concat(".").concat(getPreyDomain()).concat("/");
-		
+		String url=HTTP.concat(panel).concat(".").concat(getPreyDomain()).concat("/").concat(getPreyCampaign());
+		PreyLogger.i(url);
+		return url;
 	}
 
 	public boolean askForPassword() {
@@ -753,6 +754,18 @@ public class PreyConfig {
 		editor.putString(PreyConfig.LAST_EVENT, lastEvent);
 		editor.commit();
 		
+	}
+	
+	public boolean getDisablePowerOptions() {
+		return disablePowerOptions;
+	}
+
+	public void setDisablePowerOptions(boolean disablePowerOptions) {
+		this.disablePowerOptions = disablePowerOptions;
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(ctx);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean(PreyConfig.PREFS_DISABLE_POWER_OPTIONS, disablePowerOptions);
+		editor.commit();
 	}
 	
 	public boolean isRun() {
@@ -888,8 +901,14 @@ public class PreyConfig {
 	}
 	
 	public boolean isScheduled(){
-		if (PreyEmail.getEmail(ctx)!=null)
-			return false;
+		try{
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+				if (PreyEmail.getEmail(ctx)!=null)
+					return false;
+			}
+		}catch(Exception e){
+				return false;
+		}
 		return scheduled;
 	}
 	

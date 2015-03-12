@@ -85,7 +85,7 @@ public class C2DMReceiver extends BroadcastReceiver {
 	}
 	
 	private void handleMessageBeta(Context context, String body,String version,String cmd) {
-	    PreyLogger.i("Push notification received, waking up Prey right now!");
+	    PreyLogger.d("Push notification received, waking up Prey right now!");
 		PreyLogger.i("Push message received " + body+ " version:"+version);
 		PreyBetaController.startPrey(context,cmd);
 	}
@@ -122,7 +122,9 @@ public class C2DMReceiver extends BroadcastReceiver {
 				String registration = FileConfigReader.getInstance(ctx).getGcmIdPrefix() + (String) data[0];
 				PreyHttpResponse response=PreyWebServices.getInstance().setPushRegistrationId(ctx, registration);
 				PreyConfig.getPreyConfig(ctx).setNotificationId(registration);
-				PreyLogger.d("response:"+response.toString());
+				if(response!=null){
+					PreyLogger.d("response:"+response.toString());
+				}
 				PreyConfig.getPreyConfig(ctx).setRegisterC2dm(true);
 				PreyBetaController.startPrey(ctx);
 			} catch (Exception e) {
