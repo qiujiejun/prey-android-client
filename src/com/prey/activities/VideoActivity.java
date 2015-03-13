@@ -4,9 +4,7 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +13,6 @@ import android.view.SurfaceView;
 
 import com.prey.PreyLogger;
 import com.prey.R;
-import com.prey.activities.VideoActivity;
 
 public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 
@@ -53,7 +50,7 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 	        recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
 	        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 	        //recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-	        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+	        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
 	        recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 	        recorder.setOutputFile(filePath);
 	        //recorder.setMaxDuration(5000);  
@@ -97,14 +94,17 @@ public class VideoActivity extends Activity implements SurfaceHolder.Callback {
 	    
 	     
 
-	    public void surfaceCreated(SurfaceHolder holder) {
+	    @Override
+        public void surfaceCreated(SurfaceHolder holder) {
 	    }
 
-	    public void surfaceChanged(SurfaceHolder holder, int format, int width,
+	    @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width,
 	            int height) {
 	    }
 
-	    public void surfaceDestroyed(SurfaceHolder holder) {
+	    @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
 	        if (recording) {
 	            recorder.stop();
 	            recording = false;

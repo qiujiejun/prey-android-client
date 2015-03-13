@@ -12,9 +12,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-
 import android.hardware.Camera;
-
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -122,7 +120,7 @@ public class SimpleVideoActivity extends Activity implements
 			mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
 			//mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 			mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-			mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+			mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
 			mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 
 			directory = new File(Environment.getExternalStorageDirectory()
@@ -177,16 +175,19 @@ public class SimpleVideoActivity extends Activity implements
 		PreyLogger.i("recording service stopped");
 	}
 
-	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+	@Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
 	}
 
-	protected void onDestroy() {
+	@Override
+    protected void onDestroy() {
 		super.onDestroy();
 
 	}
 
-	public void surfaceCreated(SurfaceHolder holder) {
+	@Override
+    public void surfaceCreated(SurfaceHolder holder) {
 		PreyLogger.i("camera setPreviewDisplay()");
 		mSurfaceHolder = holder;
 		try {
@@ -197,7 +198,8 @@ public class SimpleVideoActivity extends Activity implements
 		}
 	}
 
-	public void surfaceDestroyed(SurfaceHolder holder) {
+	@Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
 		PreyLogger.d("camera surfaceDestroyed()");
 		if (mServiceCamera != null) {
 			mServiceCamera.stopPreview();
