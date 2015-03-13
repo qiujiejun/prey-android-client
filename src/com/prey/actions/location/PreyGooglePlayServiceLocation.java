@@ -3,14 +3,16 @@ package com.prey.actions.location;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.prey.PreyLogger;
 
-public class PreyGooglePlayServiceLocation implements LocationListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class PreyGooglePlayServiceLocation implements LocationListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
  
 	/*
 	 * Constants for location update parameters
@@ -26,7 +28,7 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 	// A fast ceiling of update intervals, used when the app is visible
 	public static final long FAST_INTERVAL_CEILING_IN_MILLISECONDS = MILLISECONDS_PER_SECOND * FAST_CEILING_IN_SECONDS;
 	private LocationRequest mLocationRequest;
-	private LocationClient mLocationClient;
+    private GoogleApiClient mGoogleApiClient;
 	private Location currentLocation = null;
 
 	public void init(Context ctx) {
@@ -41,17 +43,20 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		// Set the interval ceiling to one minute
 		mLocationRequest.setFastestInterval(FAST_INTERVAL_CEILING_IN_MILLISECONDS);
-		mLocationClient = new LocationClient(ctx, this, this);
-		mLocationClient.connect();
+        mGoogleApiClient = new GoogleApiClient.Builder(ctx)
+        .addApi(LocationServices.API)
+        .addConnectionCallbacks(this)
+        .addOnConnectionFailedListener(this)
+        .build();
+        mGoogleApiClient.connect();
 	}
 
 	public Location getLastLocation(Context ctx) {
-		try {
-			if (currentLocation == null) {
-				currentLocation = mLocationClient.getLastLocation();
-			}
-		} catch (Exception e) {
-		}
+	    mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000); // Update location every second
+
+        LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 		PreyLogger.d("getLastLocation is null:" + (currentLocation == null));
 		return currentLocation;
 	}
@@ -86,14 +91,13 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 	public void onConnected(Bundle arg0) {
 		PreyLogger.d("onConnected");
 		// TODO Auto-generated method stub
-		startPeriodicUpdates();
-	}
+//		startPeriodicUpdates();
+		mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000); // Update location every second
 
-	@Override
-	public void onDisconnected() {
-		PreyLogger.d("onDisconnected");
-		// TODO Auto-generated method stub
-		stopPeriodicUpdates();
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
 	}
 
 	/**
@@ -102,7 +106,7 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 	 */
 	public void startPeriodicUpdates() {
 		PreyLogger.d("startPeriodicUpdates");
-		mLocationClient.requestLocationUpdates(mLocationRequest, this);
+//		mLocationClient.requestLocationUpdates(mLocationRequest, this);
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 	 */
 	public void stopPeriodicUpdates() {
 		PreyLogger.d("stopPeriodicUpdates");
-		mLocationClient.removeLocationUpdates(this);
+//		mLocationClient.removeLocationUpdates(this);
 	}
 
 	@Override
@@ -121,4 +125,10 @@ public class PreyGooglePlayServiceLocation implements LocationListener, GooglePl
 		// mLatLng.setText(LocationUtils.getLatLng(this, location));
 		this.currentLocation = location;
 	}
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        // TODO Auto-generated method stub
+    }
+
 }
