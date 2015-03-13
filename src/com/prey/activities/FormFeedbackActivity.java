@@ -1,12 +1,6 @@
 package com.prey.activities;
 
-import java.util.UUID;
-
 import org.apache.http.protocol.HTTP;
-
-import com.prey.FileConfigReader;
-import com.prey.PreyUtils;
-import com.prey.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,7 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class FormFeedBackActivity extends PreyActivity {
+import com.prey.FileConfigReader;
+import com.prey.PreyUtils;
+import com.prey.R;
+
+public class FormFeedbackActivity extends PreyActivity {
 
 	private static final int SHOW_POPUP = 0;
 
@@ -54,7 +52,8 @@ public class FormFeedBackActivity extends PreyActivity {
 
 			alert.setPositiveButton(R.string.feedback_form_button2, new DialogInterface.OnClickListener() {
 
-				public void onClick(DialogInterface dialog, int id) {
+				@Override
+                public void onClick(DialogInterface dialog, int id) {
 					finish();
 				}
 			});
@@ -62,7 +61,8 @@ public class FormFeedBackActivity extends PreyActivity {
 			alert.setNegativeButton(R.string.feedback_form_button1, new DialogInterface.OnClickListener() {
 
 				
-				public void onClick(DialogInterface dialog, int id) {
+				@Override
+                public void onClick(DialogInterface dialog, int id) {
 					if (input != null) {
 						Context ctx=getApplicationContext();
 						String emailFeedback=FileConfigReader.getInstance(getApplicationContext()).getEmailFeedback();

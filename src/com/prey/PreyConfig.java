@@ -28,7 +28,7 @@ import android.telephony.TelephonyManager;
 
 import com.prey.actions.LockAction;
 import com.prey.actions.PreyAction;
-import com.prey.activities.FeedBackActivity;
+import com.prey.activities.FeedbackActivity;
 import com.prey.managers.PreyConnectivityManager;
 import com.prey.net.PreyWebServices;
 import com.prey.services.PreyDisablePowerOptionsService;
@@ -217,7 +217,7 @@ public class PreyConfig {
 		
 
 
-		this.flagFeedback=settings.getInt(PreyConfig.FLAG_FEEDBACK, FeedBackActivity.FLAG_FEEDBACK_INIT);
+		this.flagFeedback=settings.getInt(PreyConfig.FLAG_FEEDBACK, FeedbackActivity.FLAG_FEEDBACK_INIT);
 		 
 		
 		this.previousSsid=settings.getString(PreyConfig.PREVIOUS_SSID, "");
@@ -717,7 +717,7 @@ public class PreyConfig {
 	}
 	 
 	public boolean showFeedback(){
-		return FeedBackActivity.showFeedback(installationDate, flagFeedback);
+		return FeedbackActivity.showFeedback(installationDate, flagFeedback);
 	}
 	
 	public void setCamouflageSet(boolean camouflageSet){
